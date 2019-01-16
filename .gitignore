@@ -3,3 +3,4 @@ tries
 *.cmake
 Makefile
 *.gch
+CMakeCache.txt
