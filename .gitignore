@@ -1,0 +1,5 @@
+CMakeFiles
+tries
+*.cmake
+Makefile
+*.gch
