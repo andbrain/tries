@@ -9,22 +9,24 @@ namespace SimpleTrie1{
   #define NUMBER_PATHS 10
   #endif
 
+  class node{
+    public:
+      node();
+      ~node();
+      void init();
+      void insert(const char *key, std::string data, int current, int end);
+      std::string value;
+      node *paths;
+  };
+
   class trie{
     public:
       trie();
       ~trie();
-      void init();
-      char university[20];
-      trie *paths;
-  };
-  class Trie{
-    public:
-      Trie();
-      ~Trie();
       int insert(std::string key, std::string data);
       void show();
     private:
-      trie *mTrie;
+      node *m_root;
   };
 
 }

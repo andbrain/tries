@@ -4,10 +4,7 @@
 int main(int argc, char const *argv[]) {
   using std::cout;
   using std::endl;
-
-  cout << "Begining.." << endl;
-  SimpleTrie1::Trie tTrie;
-  tTrie.insert("1636", "Harvard");
-  cout << "Finishing.." << endl;
+  SimpleTrie1::trie trie;
+  trie.insert("1988", "Anderson");
   return 0;
 }
