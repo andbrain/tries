@@ -4,7 +4,8 @@ include_directories(include)
 
 #Can manually add the sources using the set command as follows:
 set(SOURCES main.cpp )
-list(APPEND SOURCES cpp/simpleTrie1.cpp)
+list(APPEND SOURCES cpp/trie.cpp)
+list(APPEND SOURCES cpp/node.cpp)
 # list(APPEND SOURCES cpp/cluster.cpp)
 # list(APPEND SOURCES cpp/kmeans.cpp)
 
