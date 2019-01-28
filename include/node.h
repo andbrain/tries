@@ -15,7 +15,7 @@ namespace SimpleTrie1{
     ~node();
     void init(std::string value);
     void insert(const char *key, std::string data, int current, int end);
-
+    int search(const char *key, int current, int end);
   // private:
     std::string value;
     std::vector<node*> *children;

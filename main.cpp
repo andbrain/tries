@@ -20,6 +20,11 @@ int main(int argc, char const *argv[]) {
 
   SimpleTrie1::trie trie;
   trie.insert("1988", "Anderson");
-  // trie.show();
+  trie.insert("1991", "Lilia");
+  std::cout << "search: 1988   ->   ";
+  std::cout << trie.search("1988") << '\n';
+  std::cout << "search: 1989   ->   ";
+  std::cout << trie.search("1989") << '\n';
+
   return 0;
 }

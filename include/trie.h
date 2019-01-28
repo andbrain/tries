@@ -6,13 +6,13 @@
 #include "node.h"
 
 namespace SimpleTrie1{
-  
+
   class trie{
     public:
       trie();
       ~trie();
       int insert(std::string key, std::string data);
-      void show();
+      std::string search(std::string key);
     private:
       node *m_root;
   };

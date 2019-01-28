@@ -32,16 +32,14 @@ void SimpleTrie1::node::init(std::string value)
 
 void SimpleTrie1::node::insert(const char *key, std::string data, int current, int end)
 {
-  std::cout << key << " " << data << '\n';
+  // std::cout << key << " " << data << '\n';
   std::cout << "current: " << current << " end: " << end << '\n';
 
   if(current < end)
   {
-    const char c = key[current - 1];
+    const char c = key[current];
     int iChar = (int)c - 48; //numbers in ASCII starts from 48
 
-    std::cout << "Add node for digit " << iChar << '\n';
-    std::cout << "Size of Children vector: " << this->children->size() << '\n';
     node *cnode = this->children->at(iChar);
 
     if(cnode == NULL)
@@ -58,4 +56,23 @@ void SimpleTrie1::node::insert(const char *key, std::string data, int current, i
     this->value = data;
     std::cout << "Data saved!" << '\n';
   }
+}
+
+int SimpleTrie1::node::search(const char *key, int current, int end)
+{
+  int found = 0;
+  const char c = key[current];
+  int iChar = (int)c - 48; //numbers in ASCII starts from 48
+
+  if(current < end)
+  {
+    node *cnode = this->children->at(iChar);
+
+    if(cnode != NULL)
+      return cnode->search(key, current + 1, end);
+  }
+  else
+    found = 1;
+
+  return found;
 }

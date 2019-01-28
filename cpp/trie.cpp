@@ -20,11 +20,16 @@ SimpleTrie1::trie::~trie()
 int SimpleTrie1::trie::insert(std::string key, std::string data)
 {
   const char *cKey = key.c_str();
-  m_root->insert(cKey, data, 1, strlen(cKey));
+  m_root->insert(cKey, data, 0, strlen(cKey));
   return 0;
 }
 
-void SimpleTrie1::trie::show()
+std::string SimpleTrie1::trie::search(std::string key)
 {
-  std::cout << "Showing trie nodes:" << '\n';
+  const char *cKey = key.c_str();
+  int found = this->m_root->search(cKey, 0, strlen(cKey));
+  if(found)
+    return "found";
+  else
+    return "not found";
 }
