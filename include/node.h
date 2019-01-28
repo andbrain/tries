@@ -18,7 +18,7 @@ namespace SimpleTrie1{
 
   // private:
     std::string value;
-    std::vector<node*> *paths;
+    std::vector<node*> *children;
   };
 }
 
