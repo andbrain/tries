@@ -59,7 +59,13 @@ namespace SimpleTrie2{
 
         void insert(std::string key);
 
-        bool search(std::string key);
+        bool search(std::string query);
+
+        int autocomplete(std::string query);
+
+        void findWords(trieNode *node, std::string query);
+
+        bool lastNode(trieNode *node);
     };
 }
 

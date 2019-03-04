@@ -48,7 +48,7 @@ SimpleTrie2::trieNode::trieNode() {
   end = false;
   children = new trieNode*[ALPHABET_SIZE];
 
-  std::cout << "Creating node " << id << std::endl;
+//  std::cout << "Creating node " << id << std::endl;
 
   for(int i=0; i<ALPHABET_SIZE; i++){
     this->children[i] = NULL;
@@ -56,7 +56,7 @@ SimpleTrie2::trieNode::trieNode() {
 }
 
 SimpleTrie2::trieNode::~trieNode() {
-  std::cout << "Releasing node " << this->getId() << std::endl;
+//  std::cout << "Releasing node " << this->getId() << std::endl;
 
   for(int i=0; i<ALPHABET_SIZE;i++){
     if(this->children[i])
@@ -87,16 +87,18 @@ SimpleTrie2::trie::trie(){
 }
 
 SimpleTrie2::trie::~trie() {
-  std::cout << "Releasing trie.." << std::endl;
+//  std::cout << "Releasing trie.." << std::endl;
   delete root;
 }
 
 void SimpleTrie2::trie::insert(std::string key){
   trieNode *node = root;
+  int index;
 
   for (int i = 0; i < key.length(); ++i) {
-    int index = CHAR_TO_INDEX(key[i]);
-    std::cout << "Node:" << node->getId() << " with char: " << key[i] << std::endl;
+    index = CHAR_TO_INDEX(key[i]);
+
+//    std::cout << "Node:" << node->getId() << " with char: " << key[i] << std::endl;
 //    std::cout << "char: " << key[i] << " index: " << index << std::endl;
 //    std::cout << "char: " << key[i] << std::endl;
 
@@ -107,9 +109,59 @@ void SimpleTrie2::trie::insert(std::string key){
   }
 
   node->setEnd(true);
-  std::cout << "Node " << node->getId() << " assigned as end of word.." << std::endl;
+//  std::cout << "Node " << node->getId() << " assigned as end of word.." << std::endl;
 }
 
 bool SimpleTrie2::trie::search(std::string key) {
-  return false;
+  trieNode* node = root;
+  int index;
+  for (int i = 0; i < key.length(); ++i) {
+    index = CHAR_TO_INDEX(key[i]);
+    if(!node->getChildren()[index])
+      return false;
+    node = node->getChildren()[index];
+  }
+
+  return (node != NULL && node->isEnd());
+}
+
+
+
+int SimpleTrie2::trie::autocomplete(std::string query) {
+  trieNode* node = root;
+  int index;
+
+  for (int i = 0; i < query.length(); ++i) {
+    index = CHAR_TO_INDEX(query[i]);
+
+    if(!node->getChildren()[index])
+      return -1;
+    node = node->getChildren()[index];
+  }
+
+  findWords(node, query);
+
+  return 1;
+}
+
+void SimpleTrie2::trie::findWords(trieNode *node,std::string prefix){
+  if(node->isEnd())
+    std::cout << prefix << std::endl;
+  if(lastNode(node))
+    return;
+
+  for (int i = 0; i < ALPHABET_SIZE; ++i) {
+    if(node->getChildren()[i]){
+      std::string p = prefix;
+      p.push_back(97 + i);
+      findWords(node->getChildren()[i],p);
+    }
+  }
+}
+
+bool SimpleTrie2::trie::lastNode(trieNode *node){
+  for (int i = 0; i < ALPHABET_SIZE; ++i)
+    if(node->getChildren()[i])
+      return false;
+  return true;
 }
