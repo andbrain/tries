@@ -47,7 +47,7 @@ namespace SimpleTrie2{
 
         void setEnd(bool isEnd);
 
-        trieNode *const *getChildren() const;
+        trieNode ** getChildren();
     };
 
     class trie{

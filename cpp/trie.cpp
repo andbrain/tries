@@ -1,3 +1,6 @@
+
+#include <trie.h>
+
 #include "../include/trie.h"
 
 //////////////              //////////////
@@ -45,12 +48,21 @@ SimpleTrie2::trieNode::trieNode() {
   end = false;
   children = new trieNode*[ALPHABET_SIZE];
 
+  std::cout << "Creating node " << id << std::endl;
+
   for(int i=0; i<ALPHABET_SIZE; i++){
     this->children[i] = NULL;
   }
 }
 
 SimpleTrie2::trieNode::~trieNode() {
+  std::cout << "Releasing node " << this->getId() << std::endl;
+
+  for(int i=0; i<ALPHABET_SIZE;i++){
+    if(this->children[i])
+      delete this->children[i];
+  }
+
   delete[] this->children;
 }
 
@@ -66,7 +78,7 @@ void SimpleTrie2::trieNode::setEnd(bool isEnd) {
   this->end = isEnd;
 }
 
-SimpleTrie2::trieNode *const *SimpleTrie2::trieNode::getChildren() const {
+SimpleTrie2::trieNode **SimpleTrie2::trieNode::getChildren(){
   return children;
 }
 
@@ -75,5 +87,26 @@ SimpleTrie2::trie::trie(){
 }
 
 SimpleTrie2::trie::~trie() {
+  std::cout << "Releasing trie.." << std::endl;
   delete root;
+}
+
+void SimpleTrie2::trie::insert(std::string key){
+  trieNode *node = root;
+
+  for (int i = 0; i < key.length(); ++i) {
+    int index = CHAR_TO_INDEX(key[i]);
+
+    std::cout << "char: " << key[i] << " index: " << index << std::endl;
+    if(!node->getChildren()[i]){
+      node->getChildren()[i] = new trieNode();
+    }
+    node = node->getChildren()[i];
+  }
+
+  node->setEnd(true);
+}
+
+bool SimpleTrie2::trie::search(std::string key) {
+  return false;
 }

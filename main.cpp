@@ -16,17 +16,13 @@ int main(int argc, char const *argv[]) {
     };
 
 //    int n = sizeof(vocabulary)/ sizeof(vocabulary[0]);
-    SimpleTrie2::trieNode n1;
-    SimpleTrie2::trieNode n2;
-    SimpleTrie2::trieNode n3;
 
-    std::cout << n1.getId() << std::endl;
-    std::cout << n2.getId() << std::endl;
-    std::cout << n3.getId() << std::endl;
-
+    SimpleTrie2::trie t1;
+    t1.insert(vocabulary[0]);
+//
 //    for (auto voc: vocabulary){
 //        std::cout << "inserting: " << voc << std::endl;
-//
+//        t1.insert(voc);
 //    }
 
 
