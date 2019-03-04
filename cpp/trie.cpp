@@ -96,15 +96,18 @@ void SimpleTrie2::trie::insert(std::string key){
 
   for (int i = 0; i < key.length(); ++i) {
     int index = CHAR_TO_INDEX(key[i]);
+    std::cout << "Node:" << node->getId() << " with char: " << key[i] << std::endl;
+//    std::cout << "char: " << key[i] << " index: " << index << std::endl;
+//    std::cout << "char: " << key[i] << std::endl;
 
-    std::cout << "char: " << key[i] << " index: " << index << std::endl;
-    if(!node->getChildren()[i]){
-      node->getChildren()[i] = new trieNode();
-    }
-    node = node->getChildren()[i];
+    if(!node->getChildren()[index])
+      node->getChildren()[index] = new trieNode();
+
+    node = node->getChildren()[index];
   }
 
   node->setEnd(true);
+  std::cout << "Node " << node->getId() << " assigned as end of word.." << std::endl;
 }
 
 bool SimpleTrie2::trie::search(std::string key) {
