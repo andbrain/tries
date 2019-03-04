@@ -2,29 +2,33 @@
 #include "include/trie.h"
 
 int main(int argc, char const *argv[]) {
-  using std::cout;
-  using std::endl;
 
-  std::string keys[] = {
-    "1988",
-    "",
-    "",
-    ""
-  };
-  std::string values[] = {
-    "Anderson",
-    "",
-    "",
-    ""
-  };
+    std::string vocabulary[] = {
+            "hello",
+            "dog",
+            "hell",
+            "cat",
+            "a",
+            "hel",
+            "help",
+            "helps",
+            "helping"
+    };
 
-  SimpleTrie1::trie trie;
-  trie.insert("1988", "Anderson");
-  trie.insert("1991", "Lilia");
-  std::cout << "search: 1988   ->   ";
-  std::cout << trie.search("1988") << '\n';
-  std::cout << "search: 1989   ->   ";
-  std::cout << trie.search("1989") << '\n';
+//    int n = sizeof(vocabulary)/ sizeof(vocabulary[0]);
+    SimpleTrie2::trieNode n1;
+    SimpleTrie2::trieNode n2;
+    SimpleTrie2::trieNode n3;
 
-  return 0;
+    std::cout << n1.getId() << std::endl;
+    std::cout << n2.getId() << std::endl;
+    std::cout << n3.getId() << std::endl;
+
+//    for (auto voc: vocabulary){
+//        std::cout << "inserting: " << voc << std::endl;
+//
+//    }
+
+
+    return 0;
 }
